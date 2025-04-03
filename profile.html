@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <img id="profile-pic" src="images/girl.jpg" alt="Profile Picture" />
+    <div class="container">
+        <div class="user-details">
+            <h2 id="username-display">Keerthi Boga</h2>
+            <p id="bio-display">Bio</p>
+            <button id="edit-bio-btn">Edit Bio</button>
+        </div>
+        
+        <!-- Your Ideas Section -->
+        <div id="ideas">
+            <h1>Your Ideas:</h1>
+            <div id="ideas-grid"></div> <!-- Ideas will populate here dynamically -->
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "your_api_key",
+            authDomain: "your_project_id.firebaseapp.com",
+            databaseURL: "https://your_project_id.firebaseio.com",
+            projectId: "your_project_id",
+            storageBucket: "your_project_id.appspot.com",
+            messagingSenderId: "your_sender_id",
+            appId: "your_app_id",
+            measurementId: "your_measurement_id"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        function loadIdeas(userId) {
+            const ideasGrid = document.getElementById("ideas-grid");
+            ideasGrid.innerHTML = "";
+
+            // Display skeleton placeholders initially
+            for (let i = 0; i < 5; i++) {  // Adjust the number of skeletons based on your needs
+                const skeletonCard = document.createElement("div");
+                skeletonCard.classList.add("idea-card", "skeleton-card");
+                skeletonCard.innerHTML = `
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="skeleton skeleton-title"></div>
+                `;
+                ideasGrid.appendChild(skeletonCard);
+            }
+
+            const ideasRef = ref(db, `users/${userId}/ideas`);
+            get(ideasRef).then((snapshot) => {
+                ideasGrid.innerHTML = ""; // Clear skeletons once data is ready
+
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const ideaData = childSnapshot.val();
+
+                        // Create idea card
+                        const ideaCard = document.createElement("div");
+                        ideaCard.classList.add("idea-card");
+
+                        ideaCard.innerHTML = `
+                            <img src="${ideaData.photoBase64 || 'images/default-idea.jpg'}" alt="Idea Image">
+                            <h3>${ideaData.title}</h3>
+                        `;
+
+                        // Add click event to open idea_details page
+                        ideaCard.addEventListener("click", () => {
+                            window.location.href = `idea_detail.html?ideaId=${childSnapshot.key}`;
+                        });
+
+                        ideasGrid.appendChild(ideaCard);
+                    });
+                } else {
+                    ideasGrid.innerHTML = "<p>No ideas found. Start by adding a new idea.</p>";
+                }
+            }).catch((error) => {
+                console.error("Error loading ideas:", error);
+                ideasGrid.innerHTML = "<p>Failed to load ideas. Please try again later.</p>";
+            });
+        }
+
+        // Check for user authentication and load ideas if signed in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadIdeas(user.uid);
+            } else {
+                alert("Please sign in to view your ideas.");
+                window.location.href = "signin.html";
+            }
+        });
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background: url("images/profile.jpg") no-repeat;
+        background-size: cover;
+    }
+
+    #profile-pic {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        margin-top: 50px;
+        margin-left: 50px;
+        border: 10px solid white;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .user-details {
+        width: 20%;
+        text-align: center;
+    }
+
+    #username-display {
+        font-size: 33px;
+        color: #050685;
+    }
+
+    #edit-bio-btn {
+        background: linear-gradient(#050658, #070A8B, #0A0DBE);
+        width: 150px;
+        height: 40px;
+        border: none;
+        color: white;
+        border-radius: 20px;
+    }
+
+    #ideas {
+        margin-left: 100px;
+        background-color: #898ad6;
+        height: auto;
+        width: 70vw;
+        border-radius: 20px;
+        padding: 20px;
+        color: #050658;
+    }
+
+    #ideas h1 {
+        margin-bottom: 10px;
+    }
+
+    #ideas-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .idea-card {
+        background-color: #ffffff;
+        color: #333;
+        border-radius: 10px;
+        width: 150px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .idea-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .idea-card img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .idea-card h3 {
+        font-size: 18px;
+        color: #050658;
+        margin: 5px 0;
+    }
+
+    /* Skeleton Effect */
+    .skeleton {
+        background-color: #ddd;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skeleton::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+        animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .skeleton-image {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .skeleton-title {
+        width: 80%;
+        height: 20px;
+        margin: 0 auto;
+    }
+</style>

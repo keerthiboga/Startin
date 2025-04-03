@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="header">
+        <div id="logo"></div>
+        <div id="mySidepanel">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="add_idea.html">Add Idea</a>
+        </div>
+        <button class="signInBtn" id="button"><span>SIGN IN</span></button>
+    </div>
+    <div class="slide-right">
+        <h2>Empowering Innovators, Fueling Growth</h2>
+    </div>
+    <p class="content">Our platform connects innovators with investors, transforming creative ideas into successful ventures. By showcasing project details, we foster collaboration, allowing investors to support promising ideas. Together, we turn visionary concepts into impactful realities.</p>
+    <div class="cardHolder">
+        <div id="project-count" class="card">Projects: 5</div>
+        <div id="total-funds" class="card">Total Funds: 10000</div>
+        <div id="investor-count" class="card">Investors:5</div>
+    </div>
+    <h1 class="innovate">INNOVATIONS</h1>
+    <div class="ideaGallery" id="ideas-grid">
+        <!-- Ideas will load here with skeleton placeholders initially -->
+    </div>
+    <div class="menu" style="display:none">
+        <button id="profile-button" class="menu-button">Profile</button>
+        <button id="add-idea-button" class="menu-button">Add Idea</button>
+    </div>
+    
+    <script type="module" src="home.js"></script>
+</body>
+<script>
+    const b = document.getElementById("button");
+    b.addEventListener("click", () => {
+        location.href = "signin.html";
+    });
+    
+    function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+    }
+    
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>
+</html>

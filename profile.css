@@ -1,0 +1,109 @@
+body
+{
+    padding:0;
+    margin:0;
+    background:url("images/profile.jpg") no-repeat;
+    background-size:cover ;
+}
+#profile-pic
+{
+    height:200px;
+    width:200px;
+    border-radius: 50%;
+    margin-top:50px;
+    margin-left:50px;
+    border:10px solid white;
+}
+.container
+{
+    display:flex;
+}
+.user-details
+{
+    width:20%;
+    text-align: center;
+}
+#username-display
+{
+    font-size: 33px;
+    color:#050685;body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #050658;
+}
+
+#ideas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.idea-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.idea-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.idea-card h3 {
+    font-size: 18px;
+    color: #050658;
+    margin: 10px 0 5px;
+}
+
+.idea-card p {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+}
+#edit-bio-btn
+{
+    background:linear-gradient(#050658,#070A8B,#0A0DBE);
+    width:150px;
+    height:40px;
+    border:none;
+    color:white;
+    border-radius:20px;
+}
+#ideas
+{
+    margin-left:100px;
+    background-color: #898ad6;
+    height:400px;
+    width:70vw;
+    border-radius: 20px;
+    padding-left:20px;
+    color:#050658;
+}

@@ -1,0 +1,90 @@
+body
+{
+    margin:0;
+    padding:0;
+    background:url("Images/image8.png");
+    background-size:cover;
+}
+.dialog-holder
+{
+    display: flex;
+}
+.dialog-box {
+    background-color: #A4B5F9;
+    width: 40vw;
+    height: 65vh;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:7%;
+    margin-left:17%;
+}
+
+.dialog-box h2 {
+    color: #050658;
+    font-size: 30px;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+input {
+    padding: 10px;
+    width: 28vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    background-color: #050658;
+    color: white;
+    height:60px;
+    width: 160px;
+    margin-left:125px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #071097;
+}
+.welcome-section
+{
+    margin-top:8%;
+    margin-left:16%;
+    color:white;
+}
+.welcome-section h2 {
+    margin-top: 60px;
+    font-size: 3rem;
+}
+
+.curve-button {
+    margin-top: 15px;
+    background-color: white;
+    color: #050658;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.curve-button:hover {
+    background-color: #050658;
+    color: white;
+}

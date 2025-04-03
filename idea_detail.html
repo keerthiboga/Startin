@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Details</title>
+    <link rel="stylesheet" href="idea_details.css">
+</head>
+<body>
+    <div class="idea-detail-container">
+        <div class="idea-image-container skeleton skeleton-photo">
+            <img id="idea-image" alt="Idea Image" style="display: none;">
+        </div>
+        <div class="idea-info">
+            <h2 id="idea-title" class="skeleton skeleton-title"></h2>
+            <p id="idea-description" class="skeleton skeleton-description"></p>
+            <p id="idea-budget" class="skeleton skeleton-budget"></p>
+            <button id="fund-button" style="display: none;">Fund this Idea</button>
+        </div>
+        
+        <!-- Feedback Section -->
+        <div class="feedback">
+            <div class="item"><button class="shape" id="good-button" style="background-color: green;"></button>Good</div>
+            <div class="item"><button class="shape" id="ok-button" style="background-color: orange;"></button>Ok</div>
+            <div class="item"><button class="shape" id="bad-button" style="background-color: red;"></button>Bad</div>
+        </div>
+    </div>
+    <script type="module" src="idea_details.js"></script>
+</body>
+</html>

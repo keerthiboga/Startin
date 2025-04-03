@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Idea</title>
+    <link rel="stylesheet" href="add_idea.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Your Idea</h2>
+        <form id="idea-form">
+            <label for="idea-photo">Upload Project Photo</label>
+            <input type="file" id="idea-photo" accept="image/*" required>
+
+            <label for="idea-title">Title</label>
+            <input type="text" id="idea-title" placeholder="Idea Title" required>
+
+            <label for="idea-description">Description</label>
+            <textarea id="idea-description" placeholder="Describe your idea" required></textarea>
+
+            <!-- New Budget Field -->
+            <label for="idea-budget">Budget</label>
+            <input type="number" id="idea-budget" placeholder="Estimated Budget" required>
+
+            <button type="submit">Submit Idea</button>
+            <div id="submission-message"></div>
+        </form>
+    </div>
+</body>
+<script type="module" src="add_idea.js"></script>
+</html>
